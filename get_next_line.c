@@ -6,7 +6,7 @@
 /*   By: leiamart <leiamart@student.42malaga.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 17:23:36 by leiamart          #+#    #+#             */
-/*   Updated: 2024/06/12 17:24:50 by leiamart         ###   ########.fr       */
+/*   Updated: 2024/06/12 20:45:16 by leiamart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 char *get_next_line(int fd)
 {
+	static char *buffer;
 
 
 }

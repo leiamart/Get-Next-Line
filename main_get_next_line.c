@@ -1,31 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   main_get_next_line.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: leiamart <leiamart@student.42malaga.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/12 17:26:28 by leiamart          #+#    #+#             */
-/*   Updated: 2024/06/12 21:44:56 by leiamart         ###   ########.fr       */
+/*   Created: 2024/06/12 19:08:23 by leiamart          #+#    #+#             */
+/*   Updated: 2024/06/12 21:45:56 by leiamart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_GET_NEXT_LINE_H
-# define FT_GET_NEXT_LINE_H
+#include "get_next_line.h"
+#include <fcntl.h>
+#include <unistd.h>
 
-#ifndef BUFFER_SIZE
-# define BUFFER_SIZE
-# endif
+int	main(int argc, char **argv)
+{
+	char	*line;
+	int		i;
+	int		fd;
 
-#include "unistd.h"
-#include "
-
-void	*ft_calloc(size_t count, size_t size);
-size_t	ft_strlen(const char *s);
-char	*ft_strjoin(char *aux_line, char *buffer, int read_bytes);
-char	*ft_strchr(const char *s, int c);
-
-
-char *get_next_line(int fd);
-
-#endif
+	if (argc != 2)
+		return (0);
+	fd = open(argv[1], O_RDONLY);
+	i = 1;
+	while (i < 10)
+	{
+		line = get_next_line(fd);
+		printf("line [%d]: %s", i, line);
+		free(line);
+		i++;
+	}
+	close(fd);
+	return (0);
+}
