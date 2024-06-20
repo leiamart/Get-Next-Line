@@ -19,12 +19,15 @@ int	main(int argc, char **argv)
 	char	*line;
 	int		i;
 	int		fd;
-
 	if (argc != 2)
 		return (0);
+
+
 	fd = open(argv[1], O_RDONLY);
 	i = 1;
 	while (i < 10)
+
+	
 	{
 		line = get_next_line(fd);
 		printf("line [%d]: %s", i, line);

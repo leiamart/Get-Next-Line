@@ -6,7 +6,7 @@
 /*   By: leiamart <leiamart@student.42malaga.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 17:25:19 by leiamart          #+#    #+#             */
-/*   Updated: 2024/06/12 21:39:50 by leiamart         ###   ########.fr       */
+/*   Updated: 2024/06/19 22:16:48 by leiamart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,4 +75,9 @@ char	*ft_strchr(const char *s, int c)
 		s++;
 	}
 	return ((char *)s);
+}
+
+int	ft_free()
+{
+
 }
