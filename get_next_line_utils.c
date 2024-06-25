@@ -6,12 +6,11 @@
 /*   By: leiamart <leiamart@student.42malaga.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 17:25:19 by leiamart          #+#    #+#             */
-/*   Updated: 2024/06/19 22:16:48 by leiamart         ###   ########.fr       */
+/*   Updated: 2024/06/25 22:33:11 by leiamart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
 
 void	*ft_calloc(size_t count, size_t size)
 {
@@ -32,52 +31,60 @@ void	*ft_calloc(size_t count, size_t size)
 
 size_t	ft_strlen(const char *s)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
-	while (((char *)s)[i] != '\0')
-	{
+	while (s[i])
 		i++;
-	}
 	return (i);
 }
 
-char	*ft_strjoin(char *aux_line, char *buffer, int read_bytes)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char	*str;
+	char	*r;
+	int		size;
 	int		i;
-	int		j;
+	int		c;
 
-	if (!aux_line)
-		aux_line = ft_calloc(1, 1);
-	str = malloc((ft_strlen(aux_line) + read_bytes + 1));
-	if (!str)
-		return (NULL);
 	i = 0;
-	j = 0;
-	while (aux_line[j])
-		str[i++] = aux_line[j++];
-	j = 0;
-	while (j < read_bytes)
-		str[i++] = buffer[j++];
-	str[i] = '\0';
-	free (aux_line);
-	return (str);
+	c = 0;
+	size = ft_strlen(s1) + ft_strlen(s2);
+	r = malloc(sizeof(char) * (size + 1));
+	if (!r || !s1 || !s2)
+		return (NULL);
+	while (s1[i] != 0)
+	{
+		r[i] = s1[i];
+		i++;
+	}
+	while (s2[c] != 0)
+	{
+		r[i] = s2[c];
+		i++;
+		c++;
+	}
+	r[size] = 0;
+	return (r);
 }
-
 
 char	*ft_strchr(const char *s, int c)
 {
-	while (*s != (char)c)
-	{
-		if (!(*s))
-			return (NULL);
-		s++;
-	}
-	return ((char *)s);
+	char	*str;
+
+	str = (char *)s;
+	while (*str != c && *str != 0)
+		str++;
+	if (*str == c)
+		return (str);
+	else
+		return (NULL);
 }
 
-int	ft_free()
+char	*ft_free(char *buffer, char *b)
 {
+	char	*t;
 
+	t = ft_strjoin(buffer, b);
+	free(buffer);
+	return (t);
 }

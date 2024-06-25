@@ -16,7 +16,7 @@
 
 int	main(int argc, char **argv)
 {
-	char	*line;
+	char	*l;
 	int		i;
 	int		fd;
 	if (argc != 2)
@@ -29,9 +29,9 @@ int	main(int argc, char **argv)
 
 	
 	{
-		line = get_next_line(fd);
-		printf("line [%d]: %s", i, line);
-		free(line);
+		l = get_next_line(fd);
+		printf("line [%d]: %s", i, l);
+		free(l);
 		i++;
 	}
 	close(fd);
