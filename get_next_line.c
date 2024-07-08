@@ -12,26 +12,13 @@
 
 #include "get_next_line.h"
 
-char	*ft_line(char *buffer)
+char	*ft_free(char *buffer, char *b)
 {
-	char	*l;
-	int		i;
+	char	*t;
 
-	i = 0;
-	if (!buffer[i])
-		return (NULL);
-	while (buffer[i] && buffer[i] != '\n')
-		i++;
-	l = ft_calloc(i + 2, sizeof(char));
-	i = 0;
-	while (buffer[i] && buffer[i] != '\n')
-	{
-		l[i] = buffer[i];
-		i++;
-	}
-	if (buffer[i] && buffer[i] == '\n')
-		l[i++] = '\n';
-	return (l);
+	t = ft_strjoin(buffer, b);
+	free(buffer);
+	return (t);
 }
 
 char	*ft_nextline(char *buffer)
@@ -55,6 +42,28 @@ char	*ft_nextline(char *buffer)
 		n[c++] = buffer[i++];
 	free(buffer);
 	return (n);
+}
+
+char	*ft_line(char *buffer)
+{
+	char	*l;
+	int		i;
+
+	i = 0;
+	if (!buffer[i])
+		return (NULL);
+	while (buffer[i] && buffer[i] != '\n')
+		i++;
+	l = ft_calloc(i + 2, sizeof(char));
+	i = 0;
+	while (buffer[i] && buffer[i] != '\n')
+	{
+		l[i] = buffer[i];
+		i++;
+	}
+	if (buffer[i] && buffer[i] == '\n')
+		l[i++] = '\n';
+	return (l);
 }
 
 char	*read_file(int fd, char *r)

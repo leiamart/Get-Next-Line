@@ -6,32 +6,40 @@
 /*   By: leiamart <leiamart@student.42malaga.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 16:13:28 by leiamart          #+#    #+#             */
-/*   Updated: 2024/06/26 16:51:14 by leiamart         ###   ########.fr       */
+/*   Updated: 2024/07/08 20:19:30 by leiamart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
 
-void	*ft_calloc(size_t count, size_t size)
+void	ft_bzero(void *s, size_t n)
 {
-	void	*p;
+	char	*str;
 	size_t	i;
 
-	p = malloc(count * size);
-	if (!p)
-		return (NULL);
+	str = (char *)s;
 	i = 0;
-	while (i < count * size)
+	while (i < n)
 	{
-		*((char *)p +i) = 0;
+		str[i] = '\0';
 		i++;
 	}
-	return (p);
+}
+
+void	*ft_calloc(size_t count, size_t size)
+{
+	char	*r;
+
+	r = malloc(size * count);
+	if (!r)
+		return (NULL);
+	ft_bzero(r, size * count);
+	return (r);
 }
 
 size_t	ft_strlen(const char *s)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (s[i])
@@ -41,7 +49,6 @@ size_t	ft_strlen(const char *s)
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-
 	char	*r;
 	int		size;
 	int		i;
@@ -79,13 +86,4 @@ char	*ft_strchr(const char *s, int c)
 		return (str);
 	else
 		return (NULL);
-}
-
-char	*ft_free(char *buffer, char *b)
-{
-	char	*t;
-
-	t = ft_strjoin(buffer, b);
-	free(buffer);
-	return (t);
 }
