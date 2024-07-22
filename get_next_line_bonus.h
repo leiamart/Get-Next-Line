@@ -6,7 +6,7 @@
 /*   By: leiamart <leiamart@student.42malaga.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 16:14:33 by leiamart          #+#    #+#             */
-/*   Updated: 2024/06/26 16:45:57 by leiamart         ###   ########.fr       */
+/*   Updated: 2024/07/22 18:22:22 by leiamart         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,18 @@
 # include "fcntl.h"
 # include "limits.h"
 
-void	*ft_calloc(size_t count, size_t size);
-size_t	ft_strlen(const char *s);
-char	*ft_strjoin(char const *s1, char const *s2);
-char	*ft_strchr(const char *s, int c);
-char	*ft_free(char *buffer, char *b);
-char	*ft_line(char *buffer);
-char	*ft_nextline(char *buffer);
-char	*read_file(int fd, char *r);
+char	*ft_free(char **str);
+
+ssize_t	ft_strlengnl(char *str);
+
+char	*ft_strchrgnl(char *str, int c);
+
+char	*ft_strdupgnl(char *str);
+
+char	*ft_substrgnl(char *str, unsigned int start, ssize_t len);
+
+char	*ft_strjoingnl(char *s1, char *s2);
+
 char	*get_next_line(int fd);
 
 #endif
