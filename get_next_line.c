@@ -12,38 +12,11 @@
 
 #include "get_next_line.h"
 
-char	*ft_free(char **str)
+char	*ft_freegnl(char **str)
 {
 	free(*str);
 	*str = NULL;
 	return (NULL);
-}
-
-char	*ft_readfile(int fd, char *r)
-{
-	ssize_t		readbytes;
-	char		*buffer;
-
-	buffer = (char *)malloc(sizeof(char) * BUFFER_SIZE + 1);
-	if (!buffer)
-		return (NULL);
-	readbytes = 1;
-	buffer[0] = '\0';
-	while (!ft_strchrgnl(buffer, '\n') && readbytes != 0)
-	{
-		readbytes = read(fd, buffer, BUFFER_SIZE);
-		if (readbytes == -1)
-		{
-			ft_free(&buffer);
-			ft_free(&r);
-			return (NULL);
-		}
-		buffer[readbytes] = '\0';
-		if (readbytes > 0)
-			r = ft_strjoingnl(r, buffer);
-	}
-	ft_free(&buffer);
-	return (r);
 }
 
 char	*ft_line(char *buffer, char **l)
@@ -64,7 +37,34 @@ char	*ft_line(char *buffer, char **l)
 	{
 		(*l) = ft_substrgnl(buffer, 0, i);
 	}
-	ft_free(&buffer);
+	ft_freegnl(&buffer);
+	return (r);
+}
+
+char	*ft_readfile(int fd, char *r)
+{
+	ssize_t		readbytes;
+	char		*buffer;
+
+	buffer = (char *)malloc(sizeof(char) * BUFFER_SIZE + 1);
+	if (!buffer)
+		return (NULL);
+	readbytes = 1;
+	buffer[0] = '\0';
+	while (!ft_strchrgnl(buffer, '\n') && readbytes != 0)
+	{
+		readbytes = read(fd, buffer, BUFFER_SIZE);
+		if (readbytes == -1)
+		{
+			ft_freegnl(&buffer);
+			ft_freegnl(&r);
+			return (NULL);
+		}
+		buffer[readbytes] = '\0';
+		if (readbytes > 0)
+			r = ft_strjoingnl(r, buffer);
+	}
+	ft_freegnl(&buffer);
 	return (r);
 }
 

@@ -12,6 +12,16 @@
 
 #include "get_next_line_bonus.h"
 
+ssize_t	ft_strlengnl(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
+}
+
 char	*ft_strchrgnl(char *str, int c)
 {
 	int	i;
@@ -23,16 +33,6 @@ char	*ft_strchrgnl(char *str, int c)
 	if (str[i] == (char) c)
 		return ((char *) &str[i]);
 	return (NULL);
-}
-
-ssize_t	ft_strlengnl(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
 }
 
 char	*ft_substrgnl(char *str, unsigned int start, ssize_t len)
@@ -89,5 +89,5 @@ char	*ft_strjoingnl(char *s1, char *s2)
 	while (s2[++c])
 		s3[i++] = s2[c];
 	s3[i] = '\0';
-	return (ft_free(&s1), s3);
+	return (ft_freegnl(&s1), s3);
 }
